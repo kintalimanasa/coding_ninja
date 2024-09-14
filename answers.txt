@@ -1,66 +1,23 @@
-1.  Explain, in your own words, the importance of data consistency in real-time applications.
-->Precise Decision-Making
 
-Users expect timeliness and accuracy in order to determine their actions in applications such as financial trading or live sports scoring. 
-Such users may act on stale information if the systems are poorly designed and archival information is inaccurately presented. 
-This may lead to bad decision-making, financial losses, or poor user experience.
+1. How do you stay updated on backend development topics and remain active in the community? (Forums/Discord/Slack/Meetups/Twitter/Blogs)
+->Forums
 
-2. How do you handle concurrency issues in a multi-user environment?
-->The management of concurrency problems in a multi-user environment is essential in maintaining data integrity, its consistency and
- providing a pleasant experience to the user. 
-Concurrency problems occur when two or more users or processes try to access or change the same shared resources at the same time.
+2. What are your most-used IDE and keyboard shortcuts when coding?
+->Visual Studio code(VS code)
 
-3. Describe a scenario where you had to optimize database queries for better performance.
-->E-Commerce Websites Performance Optimization
+3. How do you approach the design and implementation of a scalable backend system? Feel free to attach code snippets for better explanation.
+->Define Requirements and Constraints
 
-Background:
+Microservices Architecture
 
-An e-commerce website in question was slow, especially for users during heavy browsing times such as sale days, events. 
-Pages seemed to take longer than expected to load and users made complaints while the database department felt some queries 
-would take longer than usual. Typical website architecture where a relational database (PostgreSQL) supported product catalogs, 
-customers and order information is used.
+from flask import Flask, jsonify, request
 
-Problem:
+app = Flask(__name__)
 
-One of the major problems to be solved was about the most popular page;
- the product search results page, this page was unnecessary and confused the purpose of searching for a product in the first place. 
- It allowed users to search for the products available on the website and helped them to narrow down their search based on category, 
- price, and user ratings filters. With the number of products and users increasing, the page response time was increasing as well which is not good if a pleasant user experience is to be achieved.
+@app.route('/products', methods=['GET'])
+def get_products():
+    # Placeholder for fetching product data
+    return jsonify({"products": ["Product1", "Product2"]})
 
-
-
-4. Discuss the trade-offs between using WebSockets and HTTP/2 for real-time communication.
-
-->It is important to weigh the considerations for real-time communication among Websockets, Web, and HTTP/2 at this stage. The two techniques serve different purposes and therefore have advantages for each of them. Below is a further explanation concerning their differences:
-
-Websockets
-
-Benefits:
-
-Duplex Modes of Operation for Communication:
-
-Information that is sent by a client does not remain at the server, but gets transferred back to them; it is referred to as a two-way or free and universal communication channel. Data exchange is also continuous in nature; 
-hence, it suits all applications where instant responsiveness is a key calling such as messaging apps, sports, and different graphical 
-interfaces involving interactive components.
-
-Quick Turnaround Time:
-
-The best thing about this protocol is that once a WebSocket is created, a single connection can be opened and closed just
- once hence no need to make multiple calls to establish and breakdown connections normally associated with high latency communications.
-
- Trade-offs:
- 
- Complexity in Scalability:
-
-WebSocket connections are by fully the not very easy to manager and scale. Every open connection eats server capacity, 
-thus an application that manages a great many connections in parallel might need some extra provisions.
-
-Overhead in Establishment:
-
-There is one additional operation during connection establishment in WebSockets, the new WebSocket ‘handshake’ that uses HTTP, 
-which adds some overhead compared to initial HTTP/2 connection.
-
-Firewall and Proxy Issues:
-
-Another, WebSocket connections can have problems with some firewalls and proxies in which WebSocket traffic is not supported
- or handled improperly.
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
